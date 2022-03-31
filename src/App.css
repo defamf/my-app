@@ -60,3 +60,7 @@ input {
   border-radius: 10px;
   border: none;
 }
+
+.card-artist {
+  margin-bottom: 20px;
+}

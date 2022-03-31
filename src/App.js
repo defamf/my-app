@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
+import ListArtist from "./components/ListArtist";
 
 function App() {
   const CLIENT_ID = "34b1eddc05a1468388c46ab4a1580abd";
@@ -11,6 +12,7 @@ function App() {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
+  const [selectedArtists, setSelectedArtists] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -47,19 +49,27 @@ function App() {
       },
     });
 
-    setArtists(data.artists.items);
+    let resultArtists = [...data?.artists?.items];
+    console.log(data?.artists?.items);
+    for (let i = 0; i < resultArtists.length - 1; i++) {
+      for (let j = 0; j < selectedArtists.length - 1; j++) {
+        if (resultArtists[i]?.id === selectedArtists[j]?.id) {
+          resultArtists.splice(i, 1);
+        }
+      }
+    }
+    setArtists([...selectedArtists, ...resultArtists]);
   };
-  const renderArtists = () => {
-    return artists.map((artist) => (
-      <div key={artist.id}>
-        {artist.images.length ? (
-          <img width={"100%"} src={artist.images[0].url} alt="" />
-        ) : (
-          <div>No Image</div>
-        )}
-        {artist.name}
-      </div>
-    ));
+
+  const handleSelectArtist = (artistParams, isSelected) => {
+    if (isSelected) {
+      const arr = [...selectedArtists, artistParams];
+      setSelectedArtists(arr);
+    } else {
+      let arr = [...selectedArtists];
+      arr = arr.filter((item) => item?.id !== artistParams?.id);
+      setSelectedArtists(arr);
+    }
   };
 
   return (
@@ -77,6 +87,7 @@ function App() {
               type="text"
               onChange={(e) => setSearchKey(e.target.value)}
               placeholder="Search"
+              value={searchKey}
             />
             <button type={"submit"}>Search</button>
           </form>
@@ -98,7 +109,11 @@ function App() {
           </>
         )}
 
-        {renderArtists()}
+        <ListArtist
+          artists={artists}
+          selectedArtists={selectedArtists}
+          onSelected={handleSelectArtist}
+        />
       </header>
     </div>
   );
