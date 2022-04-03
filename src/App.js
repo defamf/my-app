@@ -80,7 +80,30 @@ function App() {
           className="App-logo"
           alt="logo"
         />
+        <div>
+          <form color="white">
+            <table cellPadding={10}>
+              <tr>
+                <td>
+                  <input type="text" placeholder="Title" />
+                </td>
+              </tr>
 
+              <tr>
+                <td>
+                  <input type="text" placeholder="Description" />
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button type={"submit"}>Submit</button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <br />
         {token ? (
           <form onSubmit={searchArtists}>
             <input
