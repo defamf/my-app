@@ -5,6 +5,7 @@ const CardArtist = ({ artist, selectedArtists, onSelected }) => {
 
   useEffect(() => {
     checkExistingArtist();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedArtists]);
 
   const checkExistingArtist = () => {
@@ -20,8 +21,8 @@ const CardArtist = ({ artist, selectedArtists, onSelected }) => {
 
   return (
     <div className="card-artist" key={artist.id}>
-      {artist?.images?.length ? (
-        <img width={"100%"} src={artist.images[0].url} alt="" />
+      {artist?.album?.images?.length ? (
+        <img width={"100%"} src={artist?.album?.images[0].url} alt="" />
       ) : (
         <div>No Image</div>
       )}

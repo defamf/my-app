@@ -64,3 +64,19 @@ input {
 .card-artist {
   margin-bottom: 20px;
 }
+
+.horizontal {
+  display: flex;
+  overflow: scroll;
+}
+
+.horizontal::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.card-playlist {
+  border: 1px solid white;
+  padding: 8px;
+  border-radius: 10px;
+  margin-right: 16px;
+}
