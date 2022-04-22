@@ -4,6 +4,8 @@ import axios from "axios";
 import ListArtist from "./components/ListArtist";
 import CreatePlaylist from "./components/CreatePlaylist";
 import { useDispatch, useSelector } from "react-redux";
+import logo from "./images/sepotipaylogo.png";
+import landing from "./images/landingimg.jpg";
 
 function App() {
   const CLIENT_ID = "34b1eddc05a1468388c46ab4a1580abd";
@@ -137,8 +139,8 @@ function App() {
         },
         headerConfig
       );
-      console.log("asdasd", response);
-      alert("PlayList Created");
+      console.log("", response);
+      alert("Playlist Created");
     } catch (error) {
       console.error(error?.response);
     }
@@ -147,33 +149,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img
-          src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
-          className="App-logo"
-          alt="logo"
-        />
-        <CreatePlaylist onSubmit={getPlaylist} userID={userID} token={token} />
-        <h1>Playlist</h1>
-        <div className="horizontal">
-          {playlists?.map((item, index) => (
-            <div className="card-playlist" key={index}>
-              <div>
-                <p>{item?.name}</p>
-                <p>Description: {item?.description || "-"}</p>
-              </div>
-              <button
-                onClick={() => {
-                  addSelectedToPlaylist(item?.id);
-                }}
-              >
-                Add selected song to this playlist
-              </button>
-            </div>
-          ))}
-        </div>
+        <div className="nav"></div>
+        <img src={logo} className="App-logo" alt="logo" />
         <br />
         {token ? (
-          <form onSubmit={searchArtists}>
+          <form onSubmit={searchArtists} className="Search">
             <input
               type="text"
               onChange={(e) => setSearchKey(e.target.value)}
@@ -183,20 +163,59 @@ function App() {
             <button type={"submit"}>Search</button>
           </form>
         ) : (
-          <h4>Please Login</h4>
+          <>
+            <img src={landing} className="App-landing" alt="lading" />
+            <h6>/Music Website/</h6>
+            <h1>
+              Listen to your favorite <br /> music
+            </h1>
+            <p>
+              Discover digital music and podcast from creators
+              <br /> all over the world.
+            </p>
+          </>
         )}
 
         {!token ? (
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
           >
-            Login to Spotify
+            <button className="btnLogin">Login</button>
           </a>
         ) : (
           <>
-            <br></br>
-            <button onClick={logout}>Logout</button>
-            <br></br>
+            <CreatePlaylist
+              onSubmit={getPlaylist}
+              userID={userID}
+              token={token}
+            />
+            <h5>Your Playlist</h5>
+            <div className="horizontal">
+              {playlists?.map((item, index) => (
+                <div className="card-playlist" key={index}>
+                  <div>
+                    <h5>{item?.name}</h5>
+                    <span>{item?.description || "-"}</span>
+                    <br />
+                    <br />
+                  </div>
+                  <button
+                    onClick={() => {
+                      addSelectedToPlaylist(item?.id);
+                    }}
+                  >
+                    Add selected song to this playlist
+                  </button>
+                  <br />
+                  <br />
+                </div>
+              ))}
+            </div>
+            <div className="buttonLogOut">
+              <br></br>
+              <button onClick={logout}>Logout</button>
+              <br></br>
+            </div>
           </>
         )}
 

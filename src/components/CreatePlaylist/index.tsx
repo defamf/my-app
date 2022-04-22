@@ -46,7 +46,8 @@ const CreatePlaylist = ({ token, userID, onSubmit }: Props) => {
   return (
     <div>
       <form onSubmit={createPlaylist} color="white">
-        <table cellPadding={10}>
+        <h2>Create Playlist</h2>
+        <table cellPadding={5}>
           <tr>
             <td>
               <input

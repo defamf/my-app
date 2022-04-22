@@ -3,12 +3,21 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 10vmin;
+  position: absolute;
+  left: 90px;
+  top: 5px;
+}
+
+.App-landing {
+  height: 60vmin;
+  position: absolute;
+  right: 80px;
+  top: 150px;
 }
 
 .App-header {
-  background-color: #000000;
+  background-color: #0274b6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -33,25 +42,31 @@
 
 a {
   text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: larger;
+}
+
+a:hover {
+  color: rgb(45, 32, 228);
 }
 
 button {
-  background-color: #0f0f0f;
+  background-color: #072d42;
   border: none;
   border-radius: 10px;
   color: white;
   padding: 10px 24px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0px 20px;
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #242424;
+  background-color: #002fff;
   color: white;
 }
 
@@ -79,4 +94,76 @@ input {
   padding: 8px;
   border-radius: 10px;
   margin-right: 16px;
+}
+
+.buttonLogOut {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+}
+
+.login {
+  position: absolute;
+  right: 80px;
+  top: 30px;
+}
+
+.mainPage {
+  height: 100vh;
+  background-color: #0f0f0f;
+  color: wheat;
+}
+
+.mainPage p {
+  float: left;
+}
+
+h6 {
+  text-align: left;
+  float: left;
+  position: absolute;
+  left: 110px;
+  top: 120px;
+  font-size: 18px;
+}
+
+h1 {
+  text-align: left;
+  float: left;
+  position: absolute;
+  left: 110px;
+  top: 150px;
+  font-size: 64px;
+}
+
+.App-header p {
+  text-align: left;
+  float: left;
+  position: absolute;
+  left: 110px;
+  bottom: 160px;
+  font-size: 24px;
+}
+
+.btnLogin {
+  text-align: left;
+  float: left;
+  position: absolute;
+  left: 90px;
+  bottom: 100px;
+}
+
+.Search {
+  position: absolute;
+  right: 50px;
+  top: 17px;
+}
+
+.nav {
+  position: absolute;
+  top: 0px;
+  border: none;
+  background-color: #0f0f0f;
+  height: 70px;
+  width: 100%;
 }
